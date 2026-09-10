@@ -1,0 +1,41 @@
+{
+  "name": "@hasdata/google-scholar-mcp",
+  "mcpName": "com.hasdata/google-scholar",
+  "version": "1.0.0",
+  "description": "MCP server for Google Scholar through HasData's hosted API: search papers with author and source helpers, year ranges, cited-by and all-versions lookups, plus citation formats and export links. 1,000 free credits every month.",
+  "type": "module",
+  "bin": {
+    "hasdata-google-scholar-mcp": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "mcp-remote": "^0.1.43"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasData/google-scholar-mcp.git"
+  },
+  "homepage": "https://docs.hasdata.com/apis/google-scholar/scholar",
+  "keywords": [
+    "mcp",
+    "google-scholar",
+    "scholar-mcp",
+    "academic",
+    "citations",
+    "bibliometrics",
+    "research",
+    "model-context-protocol",
+    "hasdata"
+  ]
+}
