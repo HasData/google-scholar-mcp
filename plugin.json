@@ -1,0 +1,24 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "hasdata-google-scholar-mcp",
+  "version": "1.0.0",
+  "description": "Google Scholar MCP server for Cursor. Search with author and year filters, cited-by and all-versions lookups, plus citations in five styles with BibTeX export, as structured JSON. Remote MCP server hosted by HasData, connects over streamable HTTP with your HasData API key.",
+  "author": {
+    "name": "HasData",
+    "url": "https://hasdata.com"
+  },
+  "homepage": "https://docs.hasdata.com/apis/google-scholar/scholar",
+  "repository": "https://github.com/HasData/google-scholar-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "google-scholar",
+    "scholar-mcp",
+    "academic",
+    "citations",
+    "bibliometrics",
+    "research",
+    "model-context-protocol",
+    "hasdata"
+  ]
+}
