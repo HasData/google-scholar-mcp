@@ -167,10 +167,10 @@ A prompt naming a paper takes two calls, one search to reach its `resultId` and 
 
 ## Tools
 
-| Tool | Credits | What it returns |
-| :--- | :--- | :--- |
-| `hasdata_google_scholar_cite_getScholarCitationFormats` | 10 | Formatted citation snippets (MLA, APA, Chicago, Harvard, Vancouver) and reference-manager export links (BibTeX, EndNote, RefMan, RefWorks) |
-| `hasdata_google_scholar_scholar_getScholarSearchResults` | 10 | Each organic result with title, link, snippet, publication info (authors with profile links), cited-by count and link, related-articles link, and all-versions count and… |
+| Tool | What it returns |
+| --- | --- |
+| `hasdata_google_scholar_cite_getScholarCitationFormats` | Formatted citation snippets (MLA, APA, Chicago, Harvard, Vancouver) and reference-manager export links (BibTeX, EndNote, RefMan, RefWorks). 10 credits a call |
+| `hasdata_google_scholar_scholar_getScholarSearchResults` | Each organic result with title, link, snippet, publication info (authors with profile links), cited-by count and link, related-articles link, and all-versions count and…. 10 credits a call |
 
 Two tools, 10 credits per successful call.
 
