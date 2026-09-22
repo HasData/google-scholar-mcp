@@ -1,0 +1,28 @@
+---
+description: How to pull Google Scholar results, citation graphs and formatted citations through the HasData MCP server
+alwaysApply: false
+---
+
+# Google Scholar through HasData
+
+Two tools. `hasdata_google_scholar_scholar_getScholarSearchResults` takes `q` and returns a page of results. `hasdata_google_scholar_cite_getScholarCitationFormats` also takes `q`, but there `q` is a `resultId` such as `A7L9JolPKkoJ` rather than a query. Sending a title or a DOI to the citation tool returns nothing useful, and the shared parameter name is why this goes wrong.
+
+## The two ids that look alike
+
+Every result carries `citedBy.citesId` and `versions.clusterId`, and on some papers the two hold the same value. They are not interchangeable. `citesId` goes into `cites` to find the papers citing this one, `clusterId` goes into `cluster` to find every indexed copy of this one. The wrong id in the right parameter returns a plausible page of the wrong thing.
+
+`publicationInfo.authors` gives an `authorId` per author Scholar has a profile for, which is how to follow one author instead of parsing a byline.
+
+## What the numbers mean
+
+`searchInformation.totalResults` is Scholar's estimate and it is very rough. Treat it as an order of magnitude and never quote it as a count.
+
+Scholar counts citations rather than quality, and it indexes preprints, theses and citing-only records alongside published work. `asVis: 1` drops the citation-only entries when the task needs records with full metadata.
+
+## Widen, do not page
+
+Deep paging gets thin. Scholar caps how far a result set really goes and starts repeating or blocking well before the estimate suggests. Raise `num` and narrow with `asYlo`, `asYhi` or `asSdt` rather than walking `start` upward, which also costs less because the price is per call.
+
+`scisbd` set to `2` sorts by date instead of relevance, which is what a "what is new" question needs.
+
+A BibTeX link from the citation tool is a Scholar URL carrying an expiring signature, not the BibTeX itself. Fetch it promptly rather than storing it.
