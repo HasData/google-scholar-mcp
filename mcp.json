@@ -3,7 +3,7 @@
   "mcpServers": {
     "google-scholar": {
       "type": "streamable-http",
-      "url": "https://mcp.hasdata.com/api/mcp?apis=google_scholar",
+      "url": "https://mcp.hasdata.com/mcp?apis=google_scholar",
       "headers": {
         "x-api-key": "YOUR_HASDATA_API_KEY"
       }
