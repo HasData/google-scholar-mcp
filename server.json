@@ -3,7 +3,7 @@
   "name": "com.hasdata/google-scholar",
   "title": "HasData Google Scholar",
   "description": "Google Scholar search results, citation counts and citation export formats, as structured JSON.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "websiteUrl": "https://docs.hasdata.com/apis/google-scholar/scholar",
   "repository": {
     "url": "https://github.com/HasData/google-scholar-mcp",
@@ -27,7 +27,7 @@
     {
       "registryType": "npm",
       "identifier": "@hasdata/google-scholar-mcp",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "transport": {
         "type": "stdio"
       },
@@ -43,7 +43,7 @@
     {
       "registryType": "pypi",
       "identifier": "hasdata-google-scholar-mcp",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "runtimeHint": "uvx",
       "transport": {
         "type": "stdio"
