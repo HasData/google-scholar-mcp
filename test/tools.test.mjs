@@ -1,6 +1,6 @@
 // Tool contract test.
 //
-// The README promises two tools with specific names and required parameters. The upstream list
+// The README promises three tools with specific names and required parameters. The upstream list
 // can change without a single commit here, and the README would start lying silently. These
 // checks catch that before a user does.
 //
@@ -22,10 +22,12 @@ const TIMEOUT_MS = 30_000;
 
 const SEARCH = 'hasdata_google_scholar_scholar_getScholarSearchResults';
 const CITE = 'hasdata_google_scholar_cite_getScholarCitationFormats';
+const CASELAW = 'hasdata_google_scholar_case_law_getScholarCaseLawOpinion';
 
 const EXPECTED = {
     [SEARCH]: ['q'],
     [CITE]: ['q'],
+    [CASELAW]: ['caseId'],
 };
 
 // Search parameters the README documents by name.
@@ -138,7 +140,7 @@ test('the tool names have not changed', live, async () => {
     }
 });
 
-test('both tools still require q and carry a description', live, async () => {
+test('every tool still requires its own id and carries a description', live, async () => {
     const tools = await listTools();
     for (const tool of tools) {
         const required = tool.inputSchema?.required ?? [];

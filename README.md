@@ -169,10 +169,11 @@ A prompt naming a paper takes two calls, one search to reach its `resultId` and 
 
 | Tool | What it returns |
 | --- | --- |
+| `hasdata_google_scholar_case_law_getScholarCaseLawOpinion` | One court opinion with its court, reporter citation, docket numbers, argued and decided dates, and every case it cites with its own `caseId`. 10 credits a call |
 | `hasdata_google_scholar_cite_getScholarCitationFormats` | Formatted citation snippets (MLA, APA, Chicago, Harvard, Vancouver) and reference-manager export links (BibTeX, EndNote, RefMan, RefWorks). 10 credits a call |
 | `hasdata_google_scholar_scholar_getScholarSearchResults` | Each organic result with title, link, snippet, publication info (authors with profile links), cited-by count and link, related-articles link, and all-versions count and…. 10 credits a call |
 
-Two tools, 10 credits per successful call.
+Three tools, 10 credits per successful call.
 
 ### Get Scholar search results
 
@@ -248,6 +249,42 @@ Returns `citations`, the formatted string in MLA, APA, Chicago, Harvard and Vanc
   "links": [
     { "name": "BibTeX", "link": "https://scholar.googleusercontent.com/scholar.bib?q=info:A7L9JolPKkoJ:scholar.google.com/&output=citation..." }
   ]
+}
+```
+
+### Get a case law opinion
+
+[`hasdata_google_scholar_case_law_getScholarCaseLawOpinion`](https://docs.hasdata.com/apis/google-scholar/case-law?utm_source=github&utm_medium=syndication&utm_campaign=google-scholar-mcp)
+
+One court opinion, with the cases it cites.
+
+| Parameter | Type | Required | Notes |
+| :--- | :--- | :--- | :--- |
+| `caseId` | string | yes | A `caseId` from a case-law search result, not a search query |
+| `hl` | string | | Interface language |
+
+The id comes from the search tool rather than from a URL. Set `asSdt` to a case-law court scope, for example `4`, and every organic result then carries `caseId` beside `caseHasdataLink`.
+
+Returns `caseResults` with `title`, `name`, `courtName`, `cert`, and the `firstPage` and `lastPage` of the printed opinion. `dates` holds the argued and decided dates as separate entries, `shortCitations` the reporter citation, and `caseNumbers` the docket numbers. `citedCases` lists every opinion this one cites, each with its own `caseId`, so a citation graph is a second call rather than a parsing job.
+
+```json
+{
+  "caseResults": {
+    "caseId": "5876335373788447272",
+    "title": "Sony Corp. of America v. Universal City Studios, Inc., 464 US 417 - Supreme Court 1984",
+    "courtName": "Supreme Court of United States.",
+    "firstPage": 418,
+    "lastPage": 500,
+    "dates": [{ "position": 1, "type": "Argued", "date": "January 18, 1983" }],
+    "shortCitations": [{ "position": 1, "name": "464 U.S. 417 (1984)" }],
+    "citedCases": [
+      {
+        "position": 1,
+        "caseId": "1376545051729958882",
+        "caseLink": "https://scholar.google.com/scholar_case?case=1376545051729958882&hl=en&as_sdt=6,43"
+      }
+    ]
+  }
 }
 ```
 
@@ -367,7 +404,7 @@ npm install
 HASDATA_API_KEY=your_key_here npm test
 ```
 
-The tests in `test/` assert the tool contract, the part that can break without a commit here. They check that `?apis=google_scholar` returns the two expected tools, that no name changed, that both still require `q` and carry descriptions, that the search parameters this README documents are still in the schema, and that the key in use is actually accepted.
+The tests in `test/` assert the tool contract, the part that can break without a commit here. They check that `?apis=google_scholar` returns the three expected tools, that no name changed, that each still requires its own id and carries a description, that the search parameters this README documents are still in the schema, and that the key in use is actually accepted.
 
 Two tests go further. One asserts that a live search still returns `resultId`, `citedBy.citesId` and `versions.clusterId`, because those three ids are what let the tools compose and nothing else in the response would reveal their loss. The other feeds a `resultId` straight into the citation tool, which is the two-call workflow this README documents, and checks the five styles come back. Together they cost 20 credits a run, which is the price of a canary that can fail for the right reason.
 
