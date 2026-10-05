@@ -5,7 +5,9 @@ alwaysApply: false
 
 # Google Scholar through HasData
 
-Two tools. `hasdata_google_scholar_scholar_getScholarSearchResults` takes `q` and returns a page of results. `hasdata_google_scholar_cite_getScholarCitationFormats` also takes `q`, but there `q` is a `resultId` such as `A7L9JolPKkoJ` rather than a query. Sending a title or a DOI to the citation tool returns nothing useful, and the shared parameter name is why this goes wrong.
+Three tools. `hasdata_google_scholar_scholar_getScholarSearchResults` takes `q` and returns a page of results. `hasdata_google_scholar_cite_getScholarCitationFormats` also takes `q`, but there `q` is a `resultId` such as `A7L9JolPKkoJ` rather than a query. Sending a title or a DOI to the citation tool returns nothing useful, and the shared parameter name is why this goes wrong.
+
+`hasdata_google_scholar_case_law_getScholarCaseLawOpinion` is the third, and it breaks the pattern by taking `caseId` rather than `q`. The id comes from a search run with `asSdt` set to a case-law court scope, for example `4`, where every organic result then carries `caseId` beside `caseHasdataLink`. It returns the opinion with its court, reporter citation, docket numbers and argued and decided dates, plus `citedCases`, every opinion the case cites with its own `caseId`. Walking a citation graph through case law is therefore a second call rather than a parsing job.
 
 ## The two ids that look alike
 
