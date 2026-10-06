@@ -375,7 +375,7 @@ Yes, with Scholar's own operator, as `author:"J Dean"` in `q`. Search results al
 
 ### Can I use this together with other HasData APIs?
 
-Yes. One key covers everything, and one endpoint serves them all through the `apis` parameter. Point a client at `?apis=google_scholar,google_serp` to get both tool sets in one connection, or at [`mcp.hasdata.com/api/mcp`](https://docs.hasdata.com/mcp-server?utm_source=github&utm_medium=syndication&utm_campaign=google-scholar-mcp) for the full catalogue.
+Yes. One key covers everything, and one endpoint serves them all through the `apis` parameter. Point a client at `?apis=google_scholar,google_serp` to get both tool sets in one connection, or at [`mcp.hasdata.com/mcp`](https://docs.hasdata.com/mcp-server?utm_source=github&utm_medium=syndication&utm_campaign=google-scholar-mcp) for the full catalogue.
 
 ### Is HasData affiliated with Google?
 
