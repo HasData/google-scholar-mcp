@@ -16,6 +16,7 @@ https://mcp.hasdata.com/mcp?apis=google_scholar
 [![tool contract](https://github.com/HasData/google-scholar-mcp/actions/workflows/contract.yml/badge.svg)](https://github.com/HasData/google-scholar-mcp/actions/workflows/contract.yml)
 [![MCP](https://img.shields.io/badge/MCP-remote%20%7C%20streamable%20HTTP-6366f1?style=flat-square)](https://mcp.hasdata.com/mcp?apis=google_scholar)
 [![Tools](https://img.shields.io/badge/tools-2-10b981?style=flat-square)](#tools)
+- [Prompts and resources](#prompts-and-resources)
 [![npm](https://img.shields.io/npm/v/@hasdata/google-scholar-mcp?style=flat-square&logo=npm&label=npm&color=cb3837)](https://www.npmjs.com/package/@hasdata/google-scholar-mcp)
 [![PyPI](https://img.shields.io/pypi/v/hasdata-google-scholar-mcp?style=flat-square&logo=pypi&logoColor=white&label=PyPI&color=3775a9)](https://pypi.org/project/hasdata-google-scholar-mcp/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
@@ -287,6 +288,19 @@ Returns `caseResults` with `title`, `name`, `courtName`, `cert`, and the `firstP
   }
 }
 ```
+
+## Prompts and resources
+
+The server exposes 4 resources, one per parameter whose accepted values are a fixed list. Reading one is cheaper than learning the vocabulary from a rejected call, and it costs no credits. Each URI is `hasdata://google_scholar/<parameter>`.
+
+| Parameter | Values | What it selects |
+| --- | ---: | --- |
+| `hl` | 159 | The two-letter language code for the language you want to use for the search. |
+| `lr` | 43 | The 'lr' parameter specifies the language of the websites to return results from. This parameter filters results based on the language of the web content. |
+| `asSdt` | 302 | Search type/filter. Pick a value below to search case law from a specific court, or use `0,5` for Articles (default) / `7` to include patents. Any comma-separated court-code combination Google Scholar accepts also works here as free text beyond this list. |
+| `safe` | 2 | Adult content filtering option. |
+
+The list is served without an API key, so a client can read it before a user has signed up.
 
 ## Errors and failure paths
 
