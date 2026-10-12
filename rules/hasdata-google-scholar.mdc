@@ -28,3 +28,7 @@ Deep paging gets thin. Scholar caps how far a result set really goes and starts 
 `scisbd` set to `2` sorts by date instead of relevance, which is what a "what is new" question needs.
 
 A BibTeX link from the citation tool is a Scholar URL carrying an expiring signature, not the BibTeX itself. Fetch it promptly rather than storing it.
+
+## Prompts and resources
+
+The server also serves resources that spell out the accepted values of every parameter that takes a fixed list, each one at `hasdata://google_scholar/<parameter>`. Reading one spends no credits and makes no upstream request, which beats discovering the vocabulary from a rejected call. Listing them needs no API key either, so a client can read them before the user has connected an account.
